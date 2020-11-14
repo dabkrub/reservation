@@ -63,6 +63,7 @@ html,body
 .home-main
 {
   margin-top: 105px;
+  margin-bottom: 105px;
 }
 .home-bg
 {
@@ -83,7 +84,7 @@ html,body
   position: absolute;
   font-size: 300%;
   color:white;
-  font-weight: 1000;
+  font-weight: 700;
   top:24%;
   left:7%;
   width: 380px;
@@ -93,7 +94,7 @@ html,body
   position: absolute;
   font-size: 300%;
   color:white;
-  font-weight: 1000;
+  font-weight: 700;
   top:31%;
   left:7%;
   width: 500px;
@@ -132,6 +133,44 @@ html,body
   width: 260px;
   padding: 18px 30px;
   border-width: 3px;
+}
+.home-about
+{
+  width: 80%;
+  left : 50%;
+  margin-left: -40%;
+  position: absolute;
+  top:120%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.home-about-font
+{
+  font-weight: 600;
+  font-size: 250%;
+  margin-left: 30px;
+}
+.home-about-text
+{
+  font-weight: 300;
+  font-size: 140%;
+  width :90%;
+  margin: auto;
+  text-align: left;
+  text-indent: 50px;
+}
+.home-about-line
+{
+  width: 13%;
+  margin-left: 4%;
+  display: block;
+  box-shadow: none;
+  border: 6px solid #6ca4cf;
+  margin-bottom: 3%;
+}
+.home-about-pic
+{
+  width: 88%;
 }
 @media(max-width:600px)
 {
