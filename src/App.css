@@ -185,7 +185,7 @@ html,body
   width: 30%;
   top:-8%;
   left :-10%;
-  z-index: -1;
+  z-index: 0;
 }
 .login-circle1
 {
@@ -193,7 +193,7 @@ html,body
   width:30%;
   bottom:-28%;
   right:-15%;
-  z-index: -1;
+  z-index: 0;
 }
 .login-bg
 {
@@ -205,44 +205,101 @@ html,body
   z-index: 1;
 }
 .login-grid
-{
-  position : grid;
+{ 
+  position :absolute;
+  display : grid;
   grid-template-columns: 1fr 1fr;
   margin: auto;
-  top:10%;
-  width:1100px;
-  z-index: 5;
+  top: 26%;
+  left :50%;
+  width: 1152px;
+  z-index: 600;
+  margin-left: -625px;
+  text-align:center;
 }
 .login-sub-text
 {
-  position: absolute;
+  position: relative;
   color:#676565;
-  top:30%;
-  margin-left: 8%;
   z-index:100;
   font-size:120%;
   font-weight: 700;
+  text-align: center;
 }
 .login-main-text
 {
-  position: absolute;
+  position: relative;
   color : #dc3b31;
-  top:40%;
-  margin-left: 1%;
-  margin-top: -2%;
   z-index:100;
   font-size: 230%;
   font-weight: 700;
-  width:400px;
+  text-align: center;
+  width: 300px;
+  margin: auto;
+  margin-top: 20px;
 }
 .login-main-text2
 {
-  position: absolute;
+  position: relative;
   color:#676565;
-  top:50%;
-  left :50%;
   z-index:100;
   font-size:150%;
+}
+.login-main-text3
+{
+  position: relative;
+  color : #dc3b31;
+  z-index:100;
+  font-size: 230%;
+  font-weight: 700;
+  text-align: center;
+  width: 300px;
+  top:50%;
+  left:24%;
+}
+.login-input
+{
+  width :400px;
+  text-align: left;
+  margin-left: 85px;
+  margin-top: 10px;
+  border-radius: 30px;
+  border: solid #676565 1px;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 0px 60px;
+}
+.login-btn
+{
+  width:400px;
+  border-radius: 30px;
+  font-weight: 700;
+}
+.login-id
+{
+  position: absolute;
+  top:58%;
+  left:8.5%;
+}
+.login-pass
+{
+  position: absolute;
+  top:72%;
+  left:8.5%;
+  width: 25px;
+}
+.login-pic1
+{
+  position: absolute;
+  top:0%;
+  left:63%;
+  
+}
+.login-pic2
+{
+  position: absolute;
+  top:90%;
+  left:63%;
 }
 @media(max-width:600px)
 {
