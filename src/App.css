@@ -190,9 +190,9 @@ html,body
 .login-circle1
 {
   position: absolute;
-  width:30%;
-  bottom:-28%;
-  right:-15%;
+  width:18%;
+  bottom:-6%;
+  right:0%;
   z-index: 0;
 }
 .login-bg
