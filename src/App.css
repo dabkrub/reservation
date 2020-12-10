@@ -1,307 +1,176 @@
-.center
-{
-  text-align: center;
-}
-.left
-{
-  text-align: left;
-}
-.right
-{
-  float: right;
-}
-.no-overflow
-{
-  overflow-y: hidden;
-  overflow-x: hidden;
-}
-a
-{
-  text-decoration: none;
-}
-html,body
+body
 {
   background-color: #FBF9F2;
   font-family: 'Kanit', sans-serif;
-  overflow-x: hidden;
 }
-.navbar
+h1,h2,h3,h4
+{
+  color:white;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+h1
+{
+  font-size: 2.8rem;
+}
+h3
+{
+  font-size: 1.5rem;
+}
+p
+{
+  font-size: 1.2rem;
+}
+nav
 {
   position: fixed;
-  z-index: 1000;
-  height: 110px;
-  width: 100%;
-  top: 0px;
+  margin: auto;
+  top:5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: #FBF9F2;
+  height: 6rem;
+  width: 100%;
 }
-.navbar-grid
+nav-flex
 {
-  display : grid;
-  grid-template-columns: 1fr 2fr;
+  position:fixed;
 }
-.navbar-logo
+nav #nav-logo
 {
-  width: 160px;
-  margin-left: 10%;
-  margin-top: 0.5%
+  float: left;
+  margin-left: 1.2rem;
+  margin-top: 0.5rem;
+  width: 9rem;
 }
-.navbar-menu
+nav ul
 {
-  display: inline-block;
-  right: 6%;
+  float: right;
+  width: 60%;
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  margin:auto;
+  align-items:flex-end;
+  font-size: 1.2rem;
+  margin-top: 1rem;
 }
-.navbar-list
+nav li
 {
- margin-left: 5%;
-
- font-size: 20px;
- color:black;
- font-weight: 300;
+  color :black;
+  font-weight: 600;
 }
-.navbar-fb
+.nav-list li:hover
 {
-  position: absolute;
-  float:right;
-  margin-top: -15px;
-  right: 5%;
-  width: 60px;
+  color: gray;
 }
-.home-main
+nav-list
 {
-  margin-top: 105px;
-  margin-bottom: 105px;
+  margin: 0;
+}
+.nav-list img
+{
+  width: 80%;
+}
+main
+{
+  margin-top: 7rem;
+}
+.home-banner
+{
+  position: relative;
+  width: 100%;
+  min-height: 20rem;
 }
 .home-bg
 {
   position: absolute;
-  top: 46%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -1000;
-}
-.home-first
-{
-  height:1000px ;
+  background-image: url(./img/home-bg.png);
+  height: 200%;
   width: 100%;
-  justify-content: center;
+  z-index: -1;
 }
-.home-big-text
+.home-main
 {
-  position: absolute;
-  font-size: 300%;
   color:white;
-  font-weight: 700;
-  top:15%;
-  left:7%;
-  width: 380px;
+  font-size: 2.5rem;
+  margin-left:10rem;
+  margin-top: -14rem;
 }
-.home-big-text2
+.home-main2
 {
-  position: absolute;
-  font-size: 300%;
-  color:white;
-  font-weight: 700;
-  top:22%;
-  left:7%;
-  width: 500px;
+  margin-top: 5rem;
+  text-align: center;
 }
-.home-main-text
+.home-sub
 {
-  position: absolute;
-  font-size: 350%;
-  color:white;
-  font-weight: 600;
-  top:43%;
-  left:50%;
-  margin-left: -537px;
-  
+  margin-top: 1.5rem;
 }
-.home-sub-text
+.home-button
 {
-  position: absolute;
-  font-size: 160%;
-  color:white;
-  font-weight: 300;
-  top:53%;
-  left:50%;
-  margin-left: -390px;
+  text-align: center;
+  margin-top:3.2rem;
+  margin-bottom: 15.3rem;
 }
-.home-btn
+.button
 {
-  position: absolute;
-  font-size: 180%;
-  color:white;
-  font-weight: 500;
-  top:62%;
-  left:50%;
-  margin-left: -110px;
-  border-radius: 50px;
-  width: 220px;
-  padding: 18px 30px;
-  border-width: 3px;
+  font-size: 2.3rem;
+  color: white;
+  padding : 0.8rem 2.5rem;
+  border: white 3px solid;
+  border-radius: 35px;
+  text-align: center;
+}
+.button:hover
+{
+  background-color: white;
+  color:black;
+  transition: 0.5s;
+  border: black 3px solid;
+  text-decoration: none;
 }
 .home-about
 {
-  width: 80%;
-  left : 50%;
-  margin-left: -40%;
-  position: absolute;
-  top:85%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.home-about-font
-{
-  font-weight: 600;
-  font-size: 250%;
-  margin-left: 30px;
-}
-.home-about-text
-{
-  font-weight: 300;
-  font-size: 140%;
-  width :90%;
-  margin: auto;
-  text-align: left;
-  text-indent: 50px;
-}
-.home-about-line
-{
-  width: 13%;
-  margin-left: 4%;
-  display: block;
-  box-shadow: none;
-  border: 6px solid #6ca4cf;
-  margin-bottom: 3%;
-}
-.home-about-pic
-{
-  width: 88%;
-  margin-top: 5%;
-}
-.login-circle2
-{
-  position: absolute;
-  width: 30%;
-  top:-8%;
-  left :-10%;
-  z-index: 0;
-}
-.login-circle1
-{
-  position: absolute;
-  width:18%;
-  bottom:-6%;
-  right:0%;
-  z-index: 0;
-}
-.login-bg
-{
-  position: absolute;
-  top:10%;
-  left:50%;
-  width:1400px;
-  margin-left: -700px;
-  z-index: 1;
-}
-.login-grid
-{ 
-  position :absolute;
   display : grid;
   grid-template-columns: 1fr 1fr;
+  width:90%;
+  column-gap: 2rem;
   margin: auto;
-  top: 26%;
-  left :50%;
-  width: 1152px;
-  z-index: 600;
-  margin-left: -625px;
-  text-align:center;
 }
-.login-sub-text
+#building
 {
-  position: relative;
-  color:#676565;
-  z-index:100;
-  font-size:120%;
-  font-weight: 700;
-  text-align: center;
+  width: 78%;
+  min-width: 600px;
 }
-.login-main-text
+.about-text
 {
-  position: relative;
-  color : #dc3b31;
-  z-index:100;
-  font-size: 230%;
-  font-weight: 700;
-  text-align: center;
-  width: 300px;
-  margin: auto;
-  margin-top: 20px;
-}
-.login-main-text2
-{
-  position: relative;
-  color:#676565;
-  z-index:100;
-  font-size:150%;
-}
-.login-main-text3
-{
-  position: relative;
-  color : #dc3b31;
-  z-index:100;
-  font-size: 230%;
-  font-weight: 700;
-  text-align: center;
-  width: 300px;
-  top:50%;
-  left:24%;
-}
-.login-input
-{
-  width :400px;
+  color:black;
   text-align: left;
-  margin-left: 85px;
-  margin-top: 10px;
-  border-radius: 30px;
-  border: solid #676565 1px;
-  font-weight: 700;
-  font-size: 15px;
-  padding: 0px 60px;
-}
-.login-btn
-{
-  width:400px;
-  border-radius: 30px;
-  font-weight: 700;
-}
-.login-id
-{
-  position: absolute;
-  top:58%;
-  left:8.5%;
-}
-.login-pass
-{
-  position: absolute;
-  top:72%;
-  left:8.5%;
-  width: 25px;
-}
-.login-pic1
-{
-  position: absolute;
-  top:0%;
-  left:63%;
   
 }
-.login-pic2
+hr
 {
-  position: absolute;
-  top:90%;
-  left:63%;
+  float : left;
+  width: 15%;
+  border: 5px solid #6ca4cf;
 }
-@media(max-width:600px)
+section h3
 {
-
+  color:black;
+}
+@media (max-width:800px)
+{
+  nav li
+  {
+    width: 100%;
+  }
+  .home-main
+  {
+    display : none;
+    margin-top: -15rem;
+  }
+  .home-about
+  {
+    display :block;
+  }
 }

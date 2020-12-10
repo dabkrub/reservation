@@ -11,31 +11,33 @@ import {
 import fb from '../img/fb-logo.png'
 const Navbar = props => {
     return (
-        <div className="navbar navbar-grid">
-            <div className="left">
-                <img src={Logo} className="navbar-logo"/>
-            </div>
-            <div className="navbar-menu right navbar-list">
-                <Link to="/">
-                    <a className="navbar-list">HOME</a>
-                </Link>
-                <Link to="/about">
-                    <a className="navbar-list">ABOUT</a>
-                </Link>
-                <Link to="/contact">
-                    <a className="navbar-list">CONTACT US</a>
-                </Link>
-                <Link to="/faq">
-                    <a className="navbar-list">FAQ</a>
-                </Link>
-                <Link to="/login">
-                    <a className="navbar-list">LOG IN</a>
-                </Link>
-                <Link to="/err">
-                    <img className="navbar-list navbar-fb" src={fb} />
-                </Link>
-            </div>
-        </div>
+        <>
+            <nav className="nav-flex">
+                <img src={Logo} id="nav-logo"/>
+                <div className="nav-list">
+                    <ul>
+                        <Link to="/">
+                            <li>HOME</li>
+                        </Link>
+                        <Link to="/about">
+                            <li>ABOUT</li>
+                        </Link>
+                        <Link to="/contact">
+                            <li>CONTACT US</li>   
+                        </Link>
+                        <Link to="/faq">
+                            <li>FAQ</li>
+                        </Link>
+                        <Link to="/login">
+                            <li>LOG IN</li>
+                        </Link>
+                        <Link to="/fb">
+                            <li><img src={fb}/></li>
+                        </Link>
+                    </ul>
+                </div>
+            </nav>
+        </>
     );
 };
 
