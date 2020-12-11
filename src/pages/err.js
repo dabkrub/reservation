@@ -5,8 +5,7 @@ class err extends Component {
     render() {
         return (
             <div>
-                <img src={circle2} className="login-circle2 no-overflow"/>
-                <img src={circle1} className="login-circle1 no-overflow"/>
+                <h1>ERROR ISUS</h1>
             </div>
         );
     }

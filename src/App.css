@@ -2,6 +2,11 @@ body
 {
   background-color: #FBF9F2;
   font-family: 'Kanit', sans-serif;
+  overflow-x: hidden;
+}
+section
+{
+  margin-bottom: 6rem;
 }
 h1,h2,h3,h4
 {
@@ -16,6 +21,12 @@ h1
 h3
 {
   font-size: 1.5rem;
+}
+h4
+{
+  font-size: 1.5rem;
+  color: #676565;
+  font-weight: 500;
 }
 p
 {
@@ -46,14 +57,15 @@ nav #nav-logo
 nav ul
 {
   float: right;
-  width: 60%;
+  width: 50%;
   display: flex;
   list-style: none;
   justify-content: space-between;
   margin:auto;
   align-items:flex-end;
   font-size: 1.2rem;
-  margin-top: 1rem;
+  margin-top: 2.2rem;
+  margin-right: 3rem;
 }
 nav li
 {
@@ -74,12 +86,12 @@ nav-list
 }
 main
 {
-  margin-top: 7rem;
+  margin-top: 6rem;
 }
 .home-banner
 {
   position: relative;
-  width: 100%;
+  width: 200%;
   min-height: 20rem;
 }
 .home-bg
@@ -131,11 +143,32 @@ main
 }
 .home-about
 {
-  display : grid;
-  grid-template-columns: 1fr 1fr;
-  width:90%;
-  column-gap: 2rem;
+  display: flex;
+  width:85%;
+  justify-content: space-between;
+  margin-right: 5px;
   margin: auto;
+  flex-direction: row;
+}
+.home-how
+{
+  display: flex;
+  width:85%;
+  justify-content: space-between;
+  margin-right: 5px;
+  margin: auto;
+  flex-direction: row;
+}
+.home-how2
+{
+  display: flex;
+  width:100%;
+  justify-content: space-between;
+  margin-right: 5px;
+  margin: auto;
+  flex-direction: row;
+  background-color: #e95d55;
+  padding: 2rem;
 }
 #building
 {
@@ -145,8 +178,25 @@ main
 .about-text
 {
   color:black;
-  text-align: left;
-  
+  text-align: left; 
+}
+.about-text2
+{
+  color:white;
+  text-align: left; 
+}
+.about-column1
+{
+  flex:1;
+  margin-right: 40px;
+}
+.text-center
+{
+  text-align: center;
+}
+.about-column2
+{
+  flex:1;
 }
 hr
 {
@@ -158,8 +208,161 @@ section h3
 {
   color:black;
 }
-@media (max-width:800px)
+.nav-btn
 {
+  display: none;
+}
+.nav-mobile-hide,.nav-mobile
+{
+  display:none;
+}
+#login-pic
+{
+  margin-top: -0.5rem;
+  width: 90%;
+  min-width: 40%;
+}
+.login-box
+{
+  display: flex;
+  width: 60%;
+  margin: auto;
+  margin-top: 13%;
+}
+.login-flex1
+{
+  flex:1;
+  background-color: white;
+  padding: 5rem;
+  border-radius: 2rem;
+  margin-right: -1.5rem;
+}
+.login-flex2
+{
+  flex:1;
+  
+}
+.login-font2
+{
+  color :#e95d55;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+.login-input
+{
+  width: 100%;
+  border-radius: 2rem;
+  margin-bottom: 1rem;
+  padding:0.2rem;
+  padding-left: 3rem;
+  border : #676565 1px solid;
+}
+.login-btn
+{
+  width: 100%;
+  background-color: #e95d55;
+  padding: 0.2rem 20%;
+  border-radius: 2rem;
+  color: white;
+}
+.login-btn:hover
+{
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: 0.5s;
+}
+#circle1
+{
+  position: absolute;
+  left: -20%;
+  top:-30%;
+  z-index: -1;
+}
+#circle2
+{
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  z-index: -1;
+}
+@media (max-width:880px)
+{
+  .login-box
+  {
+    display: flex;
+    width: 80%;
+    margin: auto;
+    margin-top: 25%;
+    flex-direction: column;
+    text-align: center;
+  }
+  .login-flex1
+  {
+    margin-right: 0rem;
+  }
+  .login-flex1 h2
+  {
+    font-size: 1.8rem;
+  }
+  #circle1
+  { 
+    left: -50%;
+    width: 160%;
+    max-width: 50rem;
+  }
+  #circle2
+  {
+    right: -30%;
+    width: 80%;
+    max-width: 50rem;
+  }
+  .login-box
+  { 
+    margin-top: 50%;
+  }
+  .login-flex2
+  {
+    display:none;
+    
+  }
+  .nav-mobile-hide
+  {
+    display:none;
+  }
+  .nav-mobile
+  {
+
+    display: unset;
+    width: 100%;
+  }
+  .nav-mobile ul
+  {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.2rem;
+    background-color: black;
+    float: none;
+  }
+  .nav-mobile li
+  {
+    color: white;
+    margin: 0.6rem 0rem;
+  }
+  .nav-btn
+  {
+    display: unset;
+    position: absolute;
+    width: 3rem;
+    right: 2rem;
+    top:1.8rem;
+  }
+  .nav-list
+  {
+    display: none;
+  }
   nav li
   {
     width: 100%;
@@ -169,8 +372,28 @@ section h3
     display : none;
     margin-top: -15rem;
   }
-  .home-about
+  .home-about,.home-how,.home-how2
   {
     display :block;
   }
+  .home-bg
+  {
+    position: absolute;
+    background-image: url(./img/home-bg.png);
+    height: 35rem;
+    width: 50%;
+    z-index: -1;
+  }
+  .home-banner
+  {
+    position: relative;
+    width: 200%;
+    min-height: 5rem;
+  }
+  .about-column2
+  {
+    margin-top: 1.2rem;
+    flex:1;
+  }
+  
 }

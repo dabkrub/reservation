@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import bg from '../img/home-bg.png'
 import building from '../img/building.png';
+import login from '../img/Group 33.png';
 import {
     BrowserRouter as Router,
     Switch,
@@ -13,14 +14,14 @@ class home extends Component {
         return (
             <>
                 <main>
-                    <div className="home-banner">
+                    <div className="home-banner ">
                         <div className="home-bg"></div>                       
                     </div>
                     <div className="home-main">
                             <h2>KMUTT</h2><h2>Online Reservation</h2>
                     </div>
                     <div className="home-main2">
-                        <h1>WELCOME TO KMUTT ONLINE RESERVARION</h1>
+                        <h1>WELCOME TO KMUTT ONLINE RESERVATION</h1>
                         <h3 className="home-sub">Looking for free working space? Trying to reserve a place for an event?</h3>
                     </div>
                     <div className="home-button">
@@ -31,9 +32,11 @@ class home extends Component {
                 </main>
                 <section>
                     <div className="home-about">
+                        <div className="about-column1 text-center">
                             <img src={building} id="building"/>
-                        
-                        <div >
+
+                        </div>
+                        <div className="about-column2">
                             <h2 className="about-text">ABOUT US</h2>
                             <hr/>
                             <br/><br/>
@@ -50,6 +53,43 @@ class home extends Component {
                                 <p>
                                     พวกเราหวังเป็นอย่างยิ่งว่าโปรเจกต์ที่เราทำจะพัฒนามหาวิทยาลัยของเราไปอีกขั้น และสามารถนำความรู้ที่ได้จากการทำโปรเจกต์นี้ไปต่อยอดในการทำงานในอนาคตต่อไป
                                 </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div className="home-how ">
+                        <div className="about-column1">
+                            <h2 className="about-text">HERE'S HOW IT WORKS</h2>
+                            <hr/>
+                            <br/><br/><br/>
+                            <div>
+                                <h2 className="about-text">1. LOGIN</h2>
+                                <br/>
+                                <p><h3>- ลงชื่อเข้าใช้ระบบด้วย Account ของ KMUTT</h3></p>
+                            </div>
+                        </div>
+                            <div className="about-column2">
+                                <img src={login} id="login-pic"/>
+
+                            </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div className="home-how2 ">
+                            <div className="about-column1">
+                                <img src={login} id="login-pic"/>
+
+                            </div>
+                        <div className="about-column2 ">
+                            <br/><br/><br/>
+                            <div>
+                                <h2 className="about-text2">2. CHOOSE</h2>
+                                <br/>
+                                <p><h3 className="about-text2">- เลือกสถานที่ในมหาวิทยาลัย ที่ต้องการทำการจอง</h3></p>
+                                <p><h3 className="about-text2">- เช็คที่ว่างที่เหลือ และทำการเลือกช่วงเวลาเพื่อการจอง</h3></p>
                             </div>
                         </div>
                     </div>
