@@ -3,6 +3,7 @@ body
   background-color: #FBF9F2;
   font-family: 'Kanit', sans-serif;
   overflow-x: hidden;
+  height: 100%;
 }
 section
 {
@@ -272,6 +273,17 @@ section h3
   font-size: 1.2rem;
   transition: 0.5s;
 }
+.login-wrong
+{
+  color :red;
+  font-size: 1rem;
+}
+.calendar
+{
+  width: 20rem;
+  margin-top: 8rem;
+  margin-left: 5rem;
+}
 #circle1
 {
   position: absolute;
@@ -285,6 +297,46 @@ section h3
   right: 0px;
   bottom: 0px;
   z-index: -1;
+}
+.reserve-font
+{
+  color:black;
+}
+.reserve
+{
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+.reserve-flex1
+{
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  background-color: #344f65;
+}
+.reserve-flex2
+{
+  flex:6;
+  display: flex;
+  flex-direction: row;
+}
+.reserve-menu
+{
+  background-color: #344f65;
+  color:white;
+  width: 18rem;
+  padding: 1.7rem 1.2rem;
+  padding-left: 4rem;
+  margin-bottom: 0.1rem;
+  font-size: 1.3rem;
+  border-bottom: #FBF9F2 1px solid ;
+}
+.reserve-menu-space
+{
+  background-color: #344f65;
+  height: 50rem;
 }
 @media (max-width:880px)
 {
@@ -335,6 +387,7 @@ section h3
 
     display: unset;
     width: 100%;
+    cursor: pointer;
   }
   .nav-mobile ul
   {

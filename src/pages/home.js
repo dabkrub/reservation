@@ -25,7 +25,7 @@ class home extends Component {
                         <h3 className="home-sub">Looking for free working space? Trying to reserve a place for an event?</h3>
                     </div>
                     <div className="home-button">
-                        <Link to="\reserve" style={{textDecoration:"none"}}>
+                        <Link to="/login" style={{textDecoration:"none"}}>
                             <a className="button">Reserve</a>
                         </Link>
                     </div>
