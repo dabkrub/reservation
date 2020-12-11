@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import login2 from '../img/login2.png';
 import circle1 from '../img/Circle1.png';
 import circle2 from '../img/Circle2.png';
-import auth from '../firebase';
+import fb from '../firebase';
 import Reserve from '../pages/reserve.js';
 import { findAllByAltText } from '@testing-library/react';
 import  firebase from 'firebase/app';
-
+import 'firebase/firestore';
+const auth = fb.auth();
+const db = fb.firestore();
 class login extends Component {
     constructor(props){
         super(props);
@@ -14,7 +16,9 @@ class login extends Component {
             username:"",
             password:"",
             isLoggedIn: 0,
-            
+            name:"",
+            department:"",
+            id:""
         } 
     }
 
@@ -41,6 +45,16 @@ class login extends Component {
             this.setState({
                 isLoggedIn : 1
             })
+            db.collection("user").where("email","==",this.state.username)
+                .get().then(querySnapshot =>{
+                    querySnapshot.forEach((doc)=>{
+                        this.setState({
+                            name:doc.data().name,
+                            id:doc.data().id,
+                            department:doc.data().department
+                        });
+                    })
+                })
         }
         catch(error)
         {
@@ -97,7 +111,7 @@ class login extends Component {
         else if(this.state.isLoggedIn==1)
         {
             return(
-                <Reserve username={this.state.username}/>
+                <Reserve username={this.state.username} name={this.state.name} department={this.state.department} id={this.state.id}/>
             )
         }
     }
