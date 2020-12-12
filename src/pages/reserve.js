@@ -182,11 +182,11 @@ function Reserve(props){
                         <button class="reserve-btn" onClick={checkDate}>Search</button>
                     </div>
                     <div>
-                    <h2 className="reserve-font">เวลาว่างของ {select} ในวันที่ {day.getDate()}/{day.getMonth()}/{day.getFullYear()}</h2>
+                    <h2 className="reserve-font">เวลาว่างของ {select} ในวันที่ {day.getDate()}/{day.getMonth()+1}/{day.getFullYear()}</h2>
                         <table>
                             <tr>
                                 <td className="">DATE/TIME</td>
-                                <td className="long-reserve">{day.getDate()}/{day.getMonth()}/{day.getFullYear()}</td>
+                                <td className="long-reserve">{day.getDate()}/{day.getMonth()+1}/{day.getFullYear()}</td>
                                 <td>Action</td>
                             </tr>
                             {time.map((t)=>(
