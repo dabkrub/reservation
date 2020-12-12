@@ -281,7 +281,7 @@ section h3
 .calendar
 {
   width: 20rem;
-  margin-top: 8rem;
+  margin-top: 4rem;
   margin-left: 5rem;
 }
 #circle1
@@ -298,9 +298,29 @@ section h3
   bottom: 0px;
   z-index: -1;
 }
+.error-page
+{
+  height: 59rem;
+  background-color: #1a3246;
+  z-index: -2;
+  display: flex;
+  flex-direction: column;
+}
+.error-page img
+{
+  margin-top: 10%;
+  margin-bottom: -8%;
+  margin-left: 35%;
+  width: 30%;
+}
 .reserve-font
 {
   color:black;
+}
+.reserve-list
+{
+  width: 60%;
+  text-align: center;
 }
 .reserve
 {
@@ -316,11 +336,67 @@ section h3
   flex-direction: column;
   background-color: #344f65;
 }
+.disable
+{
+  color:gray;
+  border: none;
+}
+.reserve-btn
+{
+  margin-top: 2rem;
+  margin-left: 30%;
+  width: 60%
+}
+.reserve-btn2
+{
+  width: 100%
+}
 .reserve-flex2
 {
   flex:6;
   display: flex;
   flex-direction: row;
+  text-align: center;
+}
+.reserve-flex3
+{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top:5rem;
+  margin-right: 5rem;
+  justify-items: center;
+}
+.reserve-available
+{
+  color : green;
+  font-weight: bold;
+}
+.reserve-unavailable
+{
+  color:red;
+  font-weight: bold;
+}
+table,th,td
+{
+  margin-top: 2rem;
+  border :1px black solid;
+  font-size: 1.3rem;
+}
+.reserve-font
+{
+  margin-top: 5rem;
+}
+th,td{
+  padding: 1rem 2.5rem;
+}
+.reserve-long>th,td
+{
+  padding: 1.1rem 7.5rem;
+}
+.reserve h3
+{
+  color: black;
 }
 .reserve-menu
 {
@@ -336,7 +412,12 @@ section h3
 .reserve-menu-space
 {
   background-color: #344f65;
-  height: 50rem;
+  height: 35rem;
+}
+.error-page #circle1,#circle2
+{
+
+  z-index: -1;
 }
 @media (max-width:880px)
 {
