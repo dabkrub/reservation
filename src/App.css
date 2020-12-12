@@ -358,6 +358,15 @@ section h3
   flex-direction: row;
   text-align: center;
 }
+.history-flex2
+{
+  flex:8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: -3rem;
+}
 .reserve-flex3
 {
   display: flex;
@@ -398,6 +407,10 @@ th,td{
 .reserve-long>th,td
 {
   padding: 0.8rem 6.5rem;
+}
+.history-long>th,td
+{
+  padding: 0.5rem 4.5rem;
 }
 .reserve h3
 {

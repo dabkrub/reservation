@@ -14,6 +14,7 @@ import Login from './pages/login';
 import Reserve from './pages/reserve';
 import Err from './pages/err';
 import Navbar from './components/Navbar'
+import History from './pages/history';
 function App() {
   return (
     <div className="center">
@@ -25,6 +26,7 @@ function App() {
           <Route exact path="/faq" component={Faq}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/reserve" component={Reserve}/>
+          <Route exact path="/reserve/history" component={History}/>
           <Route component={Err}/>
         </Switch>
       </Router>
