@@ -4,34 +4,42 @@ import logo from '../img/kmutt.png';
 import fb from '../firebase/index';
 import 'firebase/firestore';
 import firebase from 'firebase';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Link,
-    useRouteMatch
-  } from "react-router-dom"; 
+    useRouteMatch,
+    useParams
+  } from "react-router-dom";    
 import { queries } from '@testing-library/react';
 const db=fb.firestore();
 function Reserve(props){
-        
-    const [day,onChange] = useState(new Date());
+    const [open, setOpen] = React.useState(false);
+    const [open2, setOpen2] = React.useState(false);
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+    const [day,setDay] = useState(new Date());
     const [place,setPlace] = useState([]);
     const [time,setTime] = useState([]);
     const [select,setSelect] = useState("");
+    const [confirm,setConfirm] = useState(false);
+    const [timeslot,settimeslot] = useState({time : ""});
     function checkDate(){
-        console.log("search");
-        db.collectionGroup("booking").where("name","==",select).orderBy("time").get().then(querySnapshot=>{
+        db.collectionGroup("reserving").where("name","==",select).orderBy("time").get().then(querySnapshot=>{
             const text=[]
             querySnapshot.forEach(doc=>{
                 if(doc.data().date.seconds===day.getTime()/1000)
                 {
                     text.push(doc.data());
-                    console.log("yes");
-                }
-                else
-                {
-                    console.log("no");
                 }
             })  
             setTime(text);
@@ -48,15 +56,84 @@ function Reserve(props){
     }
     function isAvailable(a)
     {
-        if(a==true)
+        if(a.available==true)
         return <span className="reserve-available">available</span>;
-        else
-        return <span className="reserve-unavailable">unavailable</span>;
+        else if(a.user == props.name && a.id == props.id) return  <span className="reserve-already">you already reserve</span>;
+        else return <span className="reserve-unavailable">unavailable</span>;
     }
+    function handleClickOpen(){
+        setOpen(true);
+      };
+    
+    function handleClose (){
+        setOpen(false);
+      };
+    function handleClickOpen2(){
+        setOpen2(true);
+      };
+    
+    function handleClose2 (){
+        setOpen2(false);
+      };
+    function reserve(a)
+    {
+        const nowday= day.getDate();
+        const nowmonth = day.getMonth();
+        const nowyear = day.getFullYear();
+        if(a.date.seconds===day.getTime()/1000&&a.name==select)
+        db.collection("place").doc(select).collection("reserving").doc(nowday+" "+ (nowmonth+1)+" "+nowyear+" "+a.time).set({
+            available : false,
+            name : a.name,
+            user : props.name,
+            id : props.id,
+            date : a.date,
+            time : a.time
+
+        })
+        checkDate();
+    }
+    function prereserve(a)
+    {
+        handleClickOpen2();
+    }
+    function precancel(a)
+    {
+        handleClickOpen();
+    }
+    function cancel(a)
+    {
+        const nowday= day.getDate();
+        const nowmonth = day.getMonth();
+        const nowyear = day.getFullYear();
+        if(a.date.seconds===day.getTime()/1000&&a.name==select)
+        db.collection("place").doc(select).collection("reserving").doc(nowday+" "+ (nowmonth+1)+" "+nowyear+" "+a.time).set({
+            available : true,
+            name : a.name,
+            user : "",
+            id : props.id,
+            date : a.date,
+            time : a.time
+
+        })
+        checkDate();
+        
+    }
+    
     function action(a)
     {
-        if(a==true)
-        return <button className="reserve-btn2">RESERVE</button>;
+        if(a.available==true)
+        return <button className="reserve-btn2" onClick={()=>{
+            checkDate();
+            prereserve(a);
+            settimeslot(a);
+
+        }}>RESERVE</button>;
+        else if(a.user == props.name && a.id == props.id) 
+        return <button className="reserve-btn2" onClick={()=>{
+            checkDate();
+            precancel(a);
+            settimeslot(a);
+        }}>CANCEL</button>;
         else
         return <button className="reserve-btn2 disable" disable>RESERVE</button>;
     }
@@ -67,6 +144,7 @@ function Reserve(props){
     return (
         <>
             <main class="reserve">
+                <Dialog/>
                 <div className="reserve-flex1">
                     <div className="reserve-menu">
                         {props.name}<br/>{props.department}  {props.id}
@@ -99,12 +177,12 @@ function Reserve(props){
                             </select>
                         </div>
                         <div className="calendar">
-                            <Calendar onChange={onChange} value={day} id="#calendar"/>
+                            <Calendar value={day} id="#calendar" onChange={setDay} />
                         </div>
                         <button class="reserve-btn" onClick={checkDate}>Search</button>
                     </div>
                     <div>
-                        <h2 className="reserve-font">เวลาว่างของ {select} ในวันที่ {day.getDate()}/{day.getMonth()}/{day.getFullYear()}</h2>
+                    <h2 className="reserve-font">เวลาว่างของ {select} ในวันที่ {day.getDate()}/{day.getMonth()}/{day.getFullYear()}</h2>
                         <table>
                             <tr>
                                 <td className="">DATE/TIME</td>
@@ -114,14 +192,74 @@ function Reserve(props){
                             {time.map((t)=>(
                                 <tr>
                                     <td>{t.time}</td>
-                                    <td>{isAvailable(t.available)}</td>
-                                    <td>{action(t.available)}</td>
+                                    <td>{isAvailable(t)}</td>
+                                    <td>{action(t)}</td>
                                 </tr>
                             ))}
                         </table>
                     </div>
                 </div>
                 <br/>
+
+                    <div>
+                        <Dialog
+                            fullScreen={fullScreen}
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="responsive-dialog-title"
+                        >
+                        <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+                        <DialogContent>
+                        <DialogContentText>
+                            คุณต้องการยกเลิกการจอง {select} ในวันที่ {day.getDate()}/{day.getMonth()}/{day.getFullYear()} เวลา {timeslot.time}
+                        </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                        <Button autoFocus onClick={()=>{
+                            handleClose();
+                        }} color="primary">
+                            ยกเลิก
+                        </Button>
+                        <Button onClick={()=>{
+                            handleClose();
+                            checkDate();
+                            cancel(timeslot);
+                        }} color="primary" autoFocus>
+                            ตกลง
+                        </Button>
+                        </DialogActions>
+                    </Dialog>
+                </div>
+
+                <div>
+                        <Dialog
+                            fullScreen={fullScreen}
+                            open={open2}
+                            onClose={handleClose2}
+                            aria-labelledby="responsive-dialog-title"
+                        >
+                        <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+                        <DialogContent>
+                        <DialogContentText>
+                            คุณต้องการจอง {select} ในวันที่ {day.getDate()}/{day.getMonth()}/{day.getFullYear()} เวลา {timeslot.time}
+                        </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                        <Button autoFocus onClick={()=>{
+                            handleClose2();
+                        }} color="primary">
+                            ยกเลิก
+                        </Button>
+                        <Button onClick={()=>{
+                            handleClose2();
+                            checkDate();
+                            reserve(timeslot);
+                        }} color="primary" autoFocus>
+                            ตกลง
+                        </Button>
+                        </DialogActions>
+                    </Dialog>
+                </div>
             </main>
         </>
     )

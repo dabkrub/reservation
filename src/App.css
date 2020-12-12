@@ -377,6 +377,11 @@ section h3
   color:red;
   font-weight: bold;
 }
+.reserve-already
+{
+  color : orange;
+  font-weight: bold;
+}
 table,th,td
 {
   margin-top: 2rem;
@@ -392,7 +397,7 @@ th,td{
 }
 .reserve-long>th,td
 {
-  padding: 1.1rem 7.5rem;
+  padding: 0.8rem 6.5rem;
 }
 .reserve h3
 {
@@ -406,7 +411,7 @@ th,td{
   padding: 1.7rem 1.2rem;
   padding-left: 4rem;
   margin-bottom: 0.1rem;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   border-bottom: #FBF9F2 1px solid ;
 }
 .reserve-menu-space
