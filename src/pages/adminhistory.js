@@ -156,18 +156,6 @@ export default function AdminHistory(props)
                                 Generate
                             </div>
                         </Link>
-                        <Link to={{
-                            pathname : '/admin/reserve',
-                            state : {
-                                name : props.location.state.name,
-                                id : props.location.state.id,
-                                department : props.location.state.department
-                            }
-                        }}>
-                            <div className="admin-menu">
-                                Reserve
-                            </div>
-                        </Link>
                         
                         <div className="admin-menu-space">
 

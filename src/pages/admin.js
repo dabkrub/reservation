@@ -69,18 +69,6 @@ export default function Admin(props)
                                 Generate
                             </div>
                         </Link>
-                        <Link to={{
-                            pathname : '/reserve/reserve',
-                            state : {
-                                name : props.name,
-                                id : props.id,
-                                department : props.department
-                            }
-                        }}>
-                            <div className="admin-menu">
-                                Reserve
-                            </div>
-                        </Link>
                         <div className="admin-menu-space">
 
                         </div>
