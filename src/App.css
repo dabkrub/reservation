@@ -213,6 +213,10 @@ section h3
 {
   display: none;
 }
+.admin-bg
+{
+  background-color: #F73E17;
+}
 .nav-mobile-hide,.nav-mobile
 {
   display:none;
@@ -291,6 +295,11 @@ section h3
   top:-30%;
   z-index: -1;
 }
+.generate-table
+{
+  margin-top: 3rem;
+  margin-left: 5rem;
+}
 #circle2
 {
   position: absolute;
@@ -357,6 +366,19 @@ section h3
   display: flex;
   flex-direction: row;
   text-align: center;
+}
+.admin-flex2
+{
+  flex:6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.admin-input
+{
+    margin-left: 1rem;
+    text-align: center;
 }
 .history-flex2
 {
@@ -427,9 +449,25 @@ th,td{
   font-size: 1.1rem;
   border-bottom: #FBF9F2 1px solid ;
 }
+.admin-menu
+{
+  background-color: #F73E17;
+  color:white;
+  width: 18rem;
+  padding: 1.7rem 1.2rem;
+  padding-left: 4rem;
+  margin-bottom: 0.1rem;
+  font-size: 1.1rem;
+  border-bottom: #FBF9F2 1px solid ;
+}
 .reserve-menu-space
 {
   background-color: #344f65;
+  height: 35rem;
+}
+.admin-menu-space
+{
+  background-color: #F73E17;
   height: 35rem;
 }
 .error-page #circle1,#circle2

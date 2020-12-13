@@ -8,6 +8,7 @@ import {
   useRouteMatch
 } from "react-router-dom";
 import Home from './pages/home';
+import Generate from './pages/generate'
 import Contact from './pages/contact';
 import Faq from './pages/faq';
 import Login from './pages/login';
@@ -18,6 +19,7 @@ import History from './pages/history';
 import { useState } from 'react';
 import PrivateRoute from 'react-private-route';
 import Reservehome from './pages/reservehome';
+import AdminHistory from './pages/adminhistory.js';
 function App() {
   const [userLogin,setStatus] = useState(false);
   return (
@@ -32,6 +34,8 @@ function App() {
           <Route exact path="/reserve" component={Reservehome}/>
           <Route exact path="/reserve/history" component={History}/>
           <Route exact path="/reserve/reserve" component={Reserve}></Route>
+          <Route exact path="/admin/history" component={AdminHistory}></Route>
+          <Route exact path="/admin/generate" component={Generate}></Route>
           <Route component={Err}/>
         </Switch>
       </Router>
