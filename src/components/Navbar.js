@@ -36,14 +36,13 @@ class Navbar extends Component
         return (
             <>
                 <nav className="nav-flex">
-                    <img src={Logo} id="nav-logo"/>
+                    <Link to="/">
+                        <img src={Logo} id="nav-logo"/>
+                    </Link>
                     <div className="nav-list">
                         <ul>
                             <Link to="/">
                                 <li>HOME</li>
-                            </Link>
-                            <Link to="/about">
-                                <li>ABOUT</li>
                             </Link>
                             <Link to="/contact">
                                 <li>CONTACT US</li>   
@@ -61,9 +60,6 @@ class Navbar extends Component
                     <ul>
                             <Link to="/">
                                 <li>HOME</li>
-                            </Link>
-                            <Link to="/about">
-                                <li>ABOUT</li>
                             </Link>
                             <Link to="/contact">
                                 <li>CONTACT US</li>   

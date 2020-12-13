@@ -39,29 +39,21 @@ export default function AdminHistory(props)
     const [timeslot,settimeslot] = useState({time : ""});
     function getData()
     {
+        console.log("ok")
         db.collectionGroup("reserving").orderBy('date').get().then(querySnapShot=>{
             const text=[];
             querySnapShot.forEach(doc =>{
-                if(Mytext!="")
+                var n=doc.data().id;
+                if(doc.data().available==false&&doc.data().id.indexOf(Mytext)>-1)
                 {
-                    if(doc.data().available==false&&doc.data().id===Mytext)
-                    {
-                        console.log("false",doc.data());
-                        text.push(doc.data());
-                    }
-                }
-                else
-                {
-                    if(doc.data().available==false)
-                    {
-                        console.log("false",doc.data());
-                        text.push(doc.data());
-                    }
+                    console.log("false",doc.data().id.indexOf(Mytext));
+                    text.push(doc.data())
                 }
             });
             setPlace(text);
         })
     }
+    console.log(Mytext)
     function isAvailable(a)
     {
         if(a.available==true)
@@ -69,6 +61,7 @@ export default function AdminHistory(props)
         else if(a.user == props.location.state.name && a.id == props.location.state.id) return  <span className="reserve-already">you already reserve</span>;
         else return <span className="reserve-unavailable">unavailable</span>;
     }
+    console.log(Mytext)
     function precancel(a)
     {
         handleClickOpen();
@@ -122,6 +115,9 @@ export default function AdminHistory(props)
     useEffect(()=>{
         getData();
     },[]);
+    useEffect(() => {
+        getData()
+     }, [Mytext]);
     if(typeof(props.location.state.name)!="undefined")
     {
         console.log(props.location.state.department);
@@ -162,11 +158,11 @@ export default function AdminHistory(props)
                         </div>
                     </div>
                     <div className="admin-flex2">
-                        <h3 className="reserve-font">Search ID : <input placeholder="ENTER ID" className="admin-input" onChange={(e)=>{
-                            setMytext(e.target.value);
+                        <h3 className="reserve-font small">Search ID : <input placeholder="ENTER ID" className="admin-input" onChange={(e)=>{
                             getData();
+                            setMytext(e.target.value);
                         }}/> </h3>
-                        <table>
+                        <table className="admin-table admin-font">
                                 <tr>
                                     <td className="">DATE</td>
                                     <td className="long-reserve">TIME</td>

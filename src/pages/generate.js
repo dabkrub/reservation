@@ -39,6 +39,8 @@ export default function Generate(props)
     const [Mytext,setMytext] = useState("");
     const [confirm,setConfirm] = useState(false);
     const [timeslot,settimeslot] = useState({time : ""});
+    const badmintontime=["3pm-4pm","4pm-5pm","5pm-6pm","6pm-7pm"];
+    const librarytime=["10am-11am","11am-12pm","12pm-1pm","1pm-2pm","2pm-3pm"]
     function getData()
     {
         db.collectionGroup("reserving").orderBy('date').get().then(querySnapShot=>{
@@ -63,6 +65,63 @@ export default function Generate(props)
             });
             setPlace(text);
         })
+    }
+    function autoGen(){
+        for(var i=0;i<7;i++)
+        {   
+            const d= new Date();
+            d.setDate(d.getDate()+i)
+            const nowday= d.getDate();
+            const nowmonth = d.getMonth();
+            const nowyear = d.getFullYear();
+            d.setHours(0,0,0,0);
+            const ts = new firebase.firestore.Timestamp.fromDate(d)
+            for(var j=0;j<4;j++)
+            {
+                db.collection("place").doc("badminton1").collection("reserving").doc(nowday+" "+ (nowmonth+1)+" "+nowyear+" "+badmintontime[j]).set({
+                    available : true,
+                    name : "badminton1", 
+                    user : "",
+                    id : "",
+                    date : ts ,
+                    time : badmintontime[j]
+                    })
+            }
+            for(var j=0;j<4;j++)
+            {
+                db.collection("place").doc("badminton2").collection("reserving").doc(nowday+" "+ (nowmonth+1)+" "+nowyear+" "+badmintontime[j]).set({
+                    available : true,
+                    name : "badminton2", 
+                    user : "",
+                    id : "",
+                    date : ts ,
+                    time : badmintontime[j]
+                    })
+            }
+            for(var j=0;j<5;j++)
+            {
+                db.collection("place").doc("ห้องติว CPE").collection("reserving").doc(nowday+" "+ (nowmonth+1)+" "+nowyear+" "+librarytime[j]).set({
+                    available : true,
+                    name : "ห้องติว CPE", 
+                    user : "",
+                    id : "",
+                    date : ts ,
+                    time : librarytime[j]
+                    })
+            }
+            for(var j=0;j<5;j++)
+            {
+                db.collection("place").doc("ห้องติว ณ ห้องสมุด").collection("reserving").doc(nowday+" "+ (nowmonth+1)+" "+nowyear+" "+librarytime[j]).set({
+                    available : true,
+                    name : "ห้องติว ณ ห้องสมุด", 
+                    user : "",
+                    id : "",
+                    date : ts ,
+                    time : librarytime[j]
+                    })
+            }
+        checkDate();
+        }
     }
     function getList(){
         db.collection("place").get().then(querySnapshot=>{
@@ -241,8 +300,8 @@ export default function Generate(props)
                             <button class="reserve-btn" onClick={checkDate}>Search</button>
                         </div>
                         <div className="generate-table">
-                            <table >
-                                <tr>
+                            <table>
+                                <tr className="generate-cell">
                                     <td className="">DATE/TIME</td>
                                     <td className="long-reserve">{day.getDate()}/{day.getMonth()+1}/{day.getFullYear()}</td>
                                     <td>User</td>
@@ -264,6 +323,7 @@ export default function Generate(props)
                             <button className="generate-btn" onClick={()=>{
                                 preadd()
                             }}> Add</button>
+                            <button className="auto-btn" onClick={autoGen}>Auto Generate</button>
                         </div>
                     <br/>
 

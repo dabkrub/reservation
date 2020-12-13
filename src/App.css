@@ -2,8 +2,12 @@ body
 {
   background-color: #FBF9F2;
   font-family: 'Kanit', sans-serif;
-  overflow-x: hidden;
+  overflow-x : hidden;
   height: 100%;
+}
+html
+{
+  overflow-x : hidden;
 }
 section
 {
@@ -58,7 +62,7 @@ nav #nav-logo
 nav ul
 {
   float: right;
-  width: 50%;
+  width: 40%;
   display: flex;
   list-style: none;
   justify-content: space-between;
@@ -66,7 +70,7 @@ nav ul
   align-items:flex-end;
   font-size: 1.2rem;
   margin-top: 2.2rem;
-  margin-right: 3rem;
+  margin-right: 4rem;
 }
 nav li
 {
@@ -92,7 +96,7 @@ main
 .home-banner
 {
   position: relative;
-  width: 200%;
+  width: 100%;
   min-height: 20rem;
 }
 .home-bg
@@ -179,7 +183,7 @@ main
 #building
 {
   width: 78%;
-  min-width: 600px;
+  min-width: 300px;
 }
 .about-text
 {
@@ -251,6 +255,13 @@ section h3
 {
   flex:1;
   
+}
+.auto-btn
+{
+  margin-left: 3rem;
+  background-color: #F73E17;
+  color:white;
+  font-size: 1.3rem;
 }
 .login-font2
 {
@@ -372,6 +383,10 @@ section h3
   flex-direction: row;
   text-align: center;
 }
+.admin-table
+{
+  margin-top: 2rem;
+}
 .admin-flex2
 {
   flex:6;
@@ -390,7 +405,6 @@ section h3
   flex:8;
   display: flex;
   flex-direction: column;
-  align-items: center;
   text-align: center;
   margin-top: -3rem;
 }
@@ -429,27 +443,23 @@ table,th,td
   margin-top: 5rem;
 }
 th,td{
-  padding: 1rem 2.5rem;
+  padding: 0.2% 1.6rem;
 }
-.reserve-long>th,td
-{
-  padding: 0.8rem 6.5rem;
-}
-.history-long>th,td
-{
-  padding: 0.5rem 4.5rem;
-}
+
 .reserve h3
 {
   color: black;
+}
+.admin-font
+{
+  font-size: 1.2rem;
 }
 .reserve-menu
 {
   background-color: #344f65;
   color:white;
-  width: 18rem;
-  padding: 1.7rem 1.2rem;
-  padding-left: 4rem;
+  width: 13rem ;
+  padding: 1.7rem 0.9rem;
   margin-bottom: 0.1rem;
   font-size: 1.1rem;
   border-bottom: #FBF9F2 1px solid ;
@@ -480,8 +490,176 @@ th,td{
 
   z-index: -1;
 }
+nav
+{
+  width: 100%;
+}
+table
+{
+  width: 60%;
+  margin: auto;
+}
+.generate-table
+{
+  margin:auto;
+  margin-top: 3rem;
+}
+.small
+{
+  font-size: 1.5rem;
+}
+.contact-font h2
+{
+  color: #1a3246;
+}
+.contact-font
+{
+  position: absolute;
+  left: 50%;
+  top:25%;
+  text-align: center;
+  width: 100%;
+  margin-left: -50%;
+}
+@media(max-width:1300px)
+{
+  .reserve-font
+  {
+    font-size: 1.4rem
+  }
+  th,td{
+    padding: 0.2% 1rem;
+  }
+  .reserve
+  {
+    flex-direction: column;
+  }
+  .reserve-flex1
+  {
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    justify-content: space-between;
+  }
+  
+  .reserve-menu-space
+  {
+    display: none;
+  }
+  .reserve-menu
+  {
+    background-color: #344f65;
+    color:white;
+    width: 5rem ;
+    padding: 1.7rem 0.2rem;
+    margin-bottom: 0.1rem;
+    font-size: 1rem;
+    border-bottom: hidden;
+  }
+  .admin-flex1
+  {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    justify-content: space-between;
+  }
+  
+  .admin-menu-space
+  {
+    display: none;
+  }
+  .admin-menu
+  {
+    width: 5rem ;
+    padding: 1.7rem 0.2rem;
+    margin-bottom: 0.1rem;
+    font-size: 1rem;
+    border-bottom: hidden;
+  }
+}
 @media (max-width:880px)
 {
+  #building
+  {
+    margin-top: 3rem;
+  }
+  .reserve
+  {
+
+    flex-direction: column;
+  }
+  .reserve-flex1
+  {
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    justify-content: space-between;
+  }
+  
+  .reserve-menu-space
+  {
+    display: none;
+  }
+  .reserve-menu
+  {
+    background-color: #344f65;
+    color:white;
+    width: 8rem ;
+    padding: 1.7rem 0.9rem;
+    margin-bottom: 0.1rem;
+    font-size: 1.1rem;
+    font-size: 1rem;
+    border-bottom: hidden;
+  }
+  th,td{
+    padding: 0.2% 0.2rem;
+    font-size: 0.8rem;
+  }
+  .reserve-font
+  {
+    font-size: 1.7rem;
+  }
+  .reserve-flex2
+  {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  table
+  {
+    width: 70%;
+    margin: auto;
+  }
+  nav
+  {
+    width: 100%;
+  }
+  nav #nav-logo
+  {
+    margin-top: 1.3rem;
+    width: 7rem;
+  }
+  h1
+  {
+    font-size: 2.4rem;
+  }
+  h3
+  {
+    font-size: 1.1rem;
+  }
+  h4
+  {
+    font-size: 1.1rem;
+    color: #676565;
+    font-weight: 500;
+  }
   .login-box
   {
     display: flex;
@@ -502,14 +680,15 @@ th,td{
   #circle1
   { 
     left: -50%;
-    width: 160%;
+    width: 144%;
     max-width: 50rem;
   }
   #circle2
   {
-    right: -30%;
+    right: 0%;
     width: 80%;
     max-width: 50rem;
+    bottom: -10rem;
   }
   .login-box
   { 
@@ -520,13 +699,18 @@ th,td{
     display:none;
     
   }
+  .small
+  {
+    font-size: 1.1rem;
+  }
+
   .nav-mobile-hide
   {
     display:none;
   }
   .nav-mobile
   {
-
+    margin: auto;
     display: unset;
     width: 100%;
     cursor: pointer;
@@ -539,12 +723,12 @@ th,td{
     align-items: center;
     font-size: 1.2rem;
     background-color: black;
-    float: none;
   }
   .nav-mobile li
   {
     color: white;
-    margin: 0.6rem 0rem;
+    margin: 1rem 0rem;
+
   }
   .nav-btn
   {
@@ -575,14 +759,15 @@ th,td{
   {
     position: absolute;
     background-image: url(./img/home-bg.png);
-    height: 35rem;
-    width: 50%;
+    height: 40rem;
+    width: 100%;
     z-index: -1;
   }
+  
   .home-banner
   {
     position: relative;
-    width: 200%;
+    width: 100%;
     min-height: 5rem;
   }
   .about-column2
@@ -590,5 +775,20 @@ th,td{
     margin-top: 1.2rem;
     flex:1;
   }
-  
+  .login-font2{
+    width: 140%;
+    margin-left: -20%;
+  }
+  nav ul
+  {
+    margin-right: 0rem;
+    margin-top:  0.8rem;
+    padding-left: 0rem;
+    text-align: center;
+  }
+  .login-input
+  {
+    width: 130%;
+    margin-left: -15%;
+  }
 }

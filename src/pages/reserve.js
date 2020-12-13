@@ -140,6 +140,12 @@ function Reserve(props){
         else
         return <button className="reserve-btn2 disable" disable>RESERVE</button>;
     }
+    function day7(D)
+    {
+        D.setDate(D.getDate()+7)
+        console.log("date",D);
+        return D
+    }
     console.log(select)
     useEffect(()=>{
         getList();
@@ -190,7 +196,7 @@ function Reserve(props){
                                 </select>
                             </div>
                             <div className="calendar">
-                                <Calendar value={day} id="#calendar" onChange={setDay} />
+                                <Calendar value={day} id="#calendar" onChange={setDay} minDate={new Date()} maxDate={day7(new Date())}/>
                             </div>
                             <button class="reserve-btn" onClick={checkDate}>Search</button>
                         </div>
