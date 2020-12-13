@@ -7,6 +7,9 @@ import Reserve from '../pages/reserve.js';
 import { findAllByAltText } from '@testing-library/react';
 import  firebase from 'firebase/app';
 import 'firebase/firestore';
+import Admin from '../pages/admin';
+import { Redirect } from 'react-router-dom';
+import Reservehome from '../pages/reservehome'
 const auth = fb.auth();
 const db = fb.firestore();
 class login extends Component {
@@ -18,7 +21,8 @@ class login extends Component {
             isLoggedIn: 0,
             name:"",
             department:"",
-            id:""
+            id:"",
+            isAdmin:false
         } 
     }
 
@@ -51,6 +55,7 @@ class login extends Component {
                         this.setState({
                             name:doc.data().name,
                             id:doc.data().id,
+                            isAdmin:doc.data().isAdmin,
                             department:doc.data().department
                         });
                     })
@@ -108,10 +113,18 @@ class login extends Component {
                 <img src={circle2} id="circle2"/>
             </>
         );
-        else if(this.state.isLoggedIn==1)
+        else if(this.state.isLoggedIn==1&&this.state.isAdmin==false)
         {
+           //return (<Redirect to='/reserve'/>)
             return(
-                <Reserve username={this.state.username} name={this.state.name} department={this.state.department} id={this.state.id}/>
+                <Reservehome username={this.state.username} name={this.state.name} department={this.state.department} id={this.state.id}/>
+            )
+        }
+        else if(this.state.isLoggedIn==1&&this.state.isAdmin==true)
+        {
+           //return (<Redirect to='/reserve'/>)
+            return(
+                <Admin username={this.state.username} name={this.state.name} department={this.state.department} id={this.state.id}/>
             )
         }
     }

@@ -12,6 +12,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
+import Login from '../pages/login';
 import History from './history.js';
 import {
     BrowserRouter as Router,
@@ -59,7 +60,7 @@ function Reserve(props){
     {
         if(a.available==true)
         return <span className="reserve-available">available</span>;
-        else if(a.user == props.name && a.id == props.id) return  <span className="reserve-already">you already reserve</span>;
+        else if(a.user == props.location.state.name && a.id == props.location.state.id) return  <span className="reserve-already">you already reserve</span>;
         else return <span className="reserve-unavailable">unavailable</span>;
     }
     function handleClickOpen(){
@@ -85,8 +86,8 @@ function Reserve(props){
         db.collection("place").doc(select).collection("reserving").doc(nowday+" "+ (nowmonth+1)+" "+nowyear+" "+a.time).set({
             available : false,
             name : a.name,
-            user : props.name,
-            id : props.id,
+            user : props.location.state.name,
+            id : props.location.state.id,
             date : a.date,
             time : a.time
 
@@ -111,7 +112,7 @@ function Reserve(props){
             available : true,
             name : a.name,
             user : "",
-            id : props.id,
+            id : "",
             date : a.date,
             time : a.time
 
@@ -129,7 +130,7 @@ function Reserve(props){
             settimeslot(a);
 
         }}>RESERVE</button>;
-        else if(a.user == props.name && a.id == props.id) 
+        else if(a.user == props.location.state.name && a.id == props.location.state.id) 
         return <button className="reserve-btn2" onClick={()=>{
             checkDate();
             precancel(a);
@@ -142,135 +143,143 @@ function Reserve(props){
     useEffect(()=>{
         getList();
     },[]);
-    return (
-        <>
-            <main class="reserve">
-                <Dialog/>
-                <div className="reserve-flex1">
-                    <div className="reserve-menu">
-                        {props.name}<br/>{props.department}  {props.id}
-                    </div>
-                    <Link to={{
-                        pathname : '/reserve/history',
-                        state : {
-                            name : props.name,
-                            id : props.id,
-                            department : props.department
-                        }
-                    }}>
+    try
+    {
+        console.log(props.location.state.name)
+        return (
+            <>
+                <main class="reserve">
+                    <Dialog/>
+                    <div className="reserve-flex1">
                         <div className="reserve-menu">
-                            Your Reserve
+                            {props.location.state.name}<br/>{props.location.state.department}  {props.location.state.id}
                         </div>
-                    </Link>
-                    <Link to="/reserve/reserve">
-                        <div className="reserve-menu">
-                            Reserve
-                        </div>
-                    </Link>
-                    <div className="reserve-menu-space">
+                        <Link to={{
+                            pathname : '/reserve/history',
+                            state : {
+                                name : props.location.state.name,
+                                id : props.location.state.id,
+                                department : props.location.state.department
+                            }
+                        }}>
+                            <div className="reserve-menu">
+                                Your Reserve
+                            </div>
+                        </Link>
+                        <Link to="/reserve/reserve">
+                            <div className="reserve-menu">
+                                Reserve
+                            </div>
+                        </Link>
+                        <div className="reserve-menu-space">
 
+                        </div>
                     </div>
-                </div>
-                <div className="reserve-flex2">
-                    <div className="reserve-flex3">
-                        <h3>Select Place</h3>
+                    <div className="reserve-flex2">
+                        <div className="reserve-flex3">
+                            <h3>Select Place</h3>
+                            <div>
+                                <select className="reserve-list" onChange={(e)=>{
+                                    setSelect(e.target.value);
+                                }}>
+                                    <option value="" disabled selected></option>
+                                    {place.map((p)=>(
+                                        <option value={p.name}>{p.name}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="calendar">
+                                <Calendar value={day} id="#calendar" onChange={setDay} />
+                            </div>
+                            <button class="reserve-btn" onClick={checkDate}>Search</button>
+                        </div>
                         <div>
-                            <select className="reserve-list" onChange={(e)=>{
-                                setSelect(e.target.value);
-                            }}>
-                                <option value="" disabled selected></option>
-                                {place.map((p)=>(
-                                    <option value={p.name}>{p.name}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="calendar">
-                            <Calendar value={day} id="#calendar" onChange={setDay} />
-                        </div>
-                        <button class="reserve-btn" onClick={checkDate}>Search</button>
-                    </div>
-                    <div>
-                    <h2 className="reserve-font">เวลาว่างของ {select} ในวันที่ {day.getDate()}/{day.getMonth()+1}/{day.getFullYear()}</h2>
-                        <table>
-                            <tr>
-                                <td className="">DATE/TIME</td>
-                                <td className="long-reserve">{day.getDate()}/{day.getMonth()+1}/{day.getFullYear()}</td>
-                                <td>Action</td>
-                            </tr>
-                            {time.map((t)=>(
+                        <h2 className="reserve-font">เวลาว่างของ {select} ในวันที่ {day.getDate()}/{day.getMonth()+1}/{day.getFullYear()}</h2>
+                            <table>
                                 <tr>
-                                    <td>{t.time}</td>
-                                    <td>{isAvailable(t)}</td>
-                                    <td>{action(t)}</td>
+                                    <td className="">DATE/TIME</td>
+                                    <td className="long-reserve">{day.getDate()}/{day.getMonth()+1}/{day.getFullYear()}</td>
+                                    <td>Action</td>
                                 </tr>
-                            ))}
-                        </table>
+                                {time.map((t)=>(
+                                    <tr>
+                                        <td>{t.time}</td>
+                                        <td>{isAvailable(t)}</td>
+                                        <td>{action(t)}</td>
+                                    </tr>
+                                ))}
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <br/>
+                    <br/>
+
+                        <div>
+                            <Dialog
+                                fullScreen={fullScreen}
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="responsive-dialog-title"
+                            >
+                            <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+                            <DialogContent>
+                            <DialogContentText>
+                                คุณต้องการยกเลิกการจอง {select} ในวันที่ {day.getDate()}/{day.getMonth()}/{day.getFullYear()} เวลา {timeslot.time}
+                            </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                            <Button autoFocus onClick={()=>{
+                                handleClose();
+                            }} color="primary">
+                                ยกเลิก
+                            </Button>
+                            <Button onClick={()=>{
+                                handleClose();
+                                checkDate();
+                                cancel(timeslot);
+                            }} color="primary" autoFocus>
+                                ตกลง
+                            </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
 
                     <div>
-                        <Dialog
-                            fullScreen={fullScreen}
-                            open={open}
-                            onClose={handleClose}
-                            aria-labelledby="responsive-dialog-title"
-                        >
-                        <DialogTitle>{"Use Google's location service?"}</DialogTitle>
-                        <DialogContent>
-                        <DialogContentText>
-                            คุณต้องการยกเลิกการจอง {select} ในวันที่ {day.getDate()}/{day.getMonth()}/{day.getFullYear()} เวลา {timeslot.time}
-                        </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                        <Button autoFocus onClick={()=>{
-                            handleClose();
-                        }} color="primary">
-                            ยกเลิก
-                        </Button>
-                        <Button onClick={()=>{
-                            handleClose();
-                            checkDate();
-                            cancel(timeslot);
-                        }} color="primary" autoFocus>
-                            ตกลง
-                        </Button>
-                        </DialogActions>
-                    </Dialog>
-                </div>
-
-                <div>
-                        <Dialog
-                            fullScreen={fullScreen}
-                            open={open2}
-                            onClose={handleClose2}
-                            aria-labelledby="responsive-dialog-title"
-                        >
-                        <DialogTitle>{"Use Google's location service?"}</DialogTitle>
-                        <DialogContent>
-                        <DialogContentText>
-                            คุณต้องการจอง {select} ในวันที่ {day.getDate()}/{day.getMonth()}/{day.getFullYear()} เวลา {timeslot.time}
-                        </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                        <Button autoFocus onClick={()=>{
-                            handleClose2();
-                        }} color="primary">
-                            ยกเลิก
-                        </Button>
-                        <Button onClick={()=>{
-                            handleClose2();
-                            checkDate();
-                            reserve(timeslot);
-                        }} color="primary" autoFocus>
-                            ตกลง
-                        </Button>
-                        </DialogActions>
-                    </Dialog>
-                </div>
-            </main>
-        </>
-    )
+                            <Dialog
+                                fullScreen={fullScreen}
+                                open={open2}
+                                onClose={handleClose2}
+                                aria-labelledby="responsive-dialog-title"
+                            >
+                            <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+                            <DialogContent>
+                            <DialogContentText>
+                                คุณต้องการจอง {select} ในวันที่ {day.getDate()}/{day.getMonth()}/{day.getFullYear()} เวลา {timeslot.time}
+                            </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                            <Button autoFocus onClick={()=>{
+                                handleClose2();
+                            }} color="primary">
+                                ยกเลิก
+                            </Button>
+                            <Button onClick={()=>{
+                                handleClose2();
+                                checkDate();
+                                reserve(timeslot);
+                            }} color="primary" autoFocus>
+                                ตกลง
+                            </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                </main>
+            </>
+        )
+    }
+    catch(e)
+    {
+        return (<Login/>)
+    }
 }
 
 export default Reserve;

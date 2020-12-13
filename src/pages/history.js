@@ -12,6 +12,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
+import Login from '../pages/login';
 import {
     BrowserRouter as Router,
     Switch,
@@ -33,8 +34,9 @@ function History(props){
     const [select,setSelect] = useState("");
     const [confirm,setConfirm] = useState(false);
     const [timeslot,settimeslot] = useState({time : ""});
-
     function getList(){
+        try
+        {
         db.collectionGroup("reserving").where("user",'==',props.location.state.name).orderBy("date").get().then(querySnapshot=>{
             const text=[];
             querySnapshot.forEach(doc => {
@@ -42,6 +44,11 @@ function History(props){
             });
             setPlace(text);
         })
+        }
+        catch(e)
+        {
+            <Login/>
+        }
     }
     function isAvailable(a)
     {
@@ -130,91 +137,106 @@ function History(props){
     useEffect(()=>{
         getList();
     },[]);
-    return (
-        <>
-            <main class="reserve">
-                <Dialog/>
-                <div className="reserve-flex1">
-                    <div className="reserve-menu">
-                        {props.location.state.name}<br/>{props.location.state.department}  {props.location.state.id}
-                    </div>
-                    <Link to={{
-                        pathname : '/reserve/history',
-                        state : {
-                            name : props.name,
-                            id : props.id,
-                            department : props.department
-                        }
-                    }}>
+    try
+    {
+        console.log(props.location.state.name)
+        return (
+            <>
+                <main class="reserve">
+                    <Dialog/>
+                    <div className="reserve-flex1">
                         <div className="reserve-menu">
-                            Your Reserve
+                            {props.location.state.name}<br/>{props.location.state.department}  {props.location.state.id}
                         </div>
-                    </Link>
-                    <Link to="/reserve/reserve">
-                        <div className="reserve-menu">
-                            Reserve
-                        </div>
-                    </Link>
-                    <div className="reserve-menu-space">
+                        <Link to={{
+                            pathname : '/reserve/history',
+                            state : {
+                                name : props.location.state.name,
+                                id : props.location.state.id,
+                                department : props.location.state.department
+                            }
+                        }}>
+                            <div className="reserve-menu">
+                                Your Reserve
+                            </div>
+                        </Link>
+                        <Link to={{
+                            pathname : '/reserve/reserve',
+                            state : {
+                                name : props.location.state.name,
+                                id : props.location.state.id,
+                                department : props.location.state.department
+                            }
+                        }}>
+                            <div className="reserve-menu">
+                                Reserve
+                            </div>
+                        </Link>
+                        <div className="reserve-menu-space">
 
+                        </div>
                     </div>
-                </div>
-                <div className="history-flex2">
-                    <h2 className="reserve-font">การจองในปัจจุบันของคุณ</h2>
-                    <div>
-                        <table>
-                            <tr>
-                                <td className="">Date</td>
-                                <td>Time</td>
-                                <td className="long-history">Place</td>
-                                <td>Action</td>
-                            </tr>
-                            {place.map((t)=>(
+                    <div className="history-flex2">
+                        <h2 className="reserve-font">การจองในปัจจุบันของคุณ</h2>
+                        <div>
+                            <table>
                                 <tr>
-                                    <td>{todate(t)}</td>
-                                    <td>{t.time}</td>
-                                    <td>{t.name}</td>
-                                    <td>{action(t)}</td>
+                                    <td className="">Date</td>
+                                    <td>Time</td>
+                                    <td className="long-history">Place</td>
+                                    <td>Action</td>
                                 </tr>
-                            ))}
-                        </table>
+                                {place.map((t)=>(
+                                    <tr>
+                                        <td>{todate(t)}</td>
+                                        <td>{t.time}</td>
+                                        <td>{t.name}</td>
+                                        <td>{action(t)}</td>
+                                    </tr>
+                                ))}
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <br/>
+                    <br/>
 
-                    <div>
-                        <Dialog
-                            fullScreen={fullScreen}
-                            open={open}
-                            onClose={handleClose}
-                            aria-labelledby="responsive-dialog-title"
-                        >
-                        <DialogTitle>{"Use Google's location service?"}</DialogTitle>
-                        <DialogContent>
-                        <DialogContentText>
-                            คุณต้องการยกเลิกการจองคุณต้องการจองใช่หรือไม่
-                        </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                        <Button autoFocus onClick={()=>{
-                            handleClose();
-                        }} color="primary">
-                            ยกเลิก
-                        </Button>
-                        <Button onClick={()=>{
-                            handleClose();
-                            getList();
-                            cancel(timeslot);
-                        }} color="primary" autoFocus>
-                            ตกลง
-                        </Button>
-                        </DialogActions>
-                    </Dialog>
-                </div>
+                        <div>
+                            <Dialog
+                                fullScreen={fullScreen}
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="responsive-dialog-title"
+                            >
+                            <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+                            <DialogContent>
+                            <DialogContentText>
+                                คุณต้องการยกเลิกการจองคุณต้องการจองใช่หรือไม่
+                            </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                            <Button autoFocus onClick={()=>{
+                                handleClose();
+                            }} color="primary">
+                                ยกเลิก
+                            </Button>
+                            <Button onClick={()=>{
+                                handleClose();
+                                getList();
+                                cancel(timeslot);
+                            }} color="primary" autoFocus>
+                                ตกลง
+                            </Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
 
-            </main>
-        </>
-    )
+                </main>
+            </>
+        )
+    }
+    catch(e)
+    {
+        return (<Login/>)
+    }
 }
 
 export default History;
