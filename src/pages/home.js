@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import bg from '../img/home-bg.png'
 import building from '../img/building.png';
 import login from '../img/Group 33.png';
+import calendar from '../img/calendar.png'
 import {
     BrowserRouter as Router,
     Switch,
@@ -80,7 +81,7 @@ class home extends Component {
                 <section>
                     <div className="home-how2 ">
                             <div className="about-column1">
-                                <img src={login} id="login-pic"/>
+                                <img src={calendar} id="calendar-pic"/>
 
                             </div>
                         <div className="about-column2 ">

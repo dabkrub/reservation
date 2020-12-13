@@ -151,6 +151,11 @@ main
   margin: auto;
   flex-direction: row;
 }
+#calendar-pic
+{
+  width:60%;
+  margin-left:5rem
+}
 .home-how
 {
   display: flex;
