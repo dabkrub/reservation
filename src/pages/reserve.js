@@ -52,6 +52,7 @@ function Reserve(props){
             const text=[];
             querySnapshot.forEach(doc => {
                 text.push(doc.data());
+                console.log(doc.data())
             });
             setPlace(text);
         })

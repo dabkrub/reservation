@@ -1,12 +1,11 @@
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAuLWwCqYl8VEtMgv6SQHfMn_yplIlTuiw",
-  authDomain: "kmutt-reservation.firebaseapp.com",
-  databaseURL: "https://kmutt-reservation.firebaseio.com",
-  projectId: "kmutt-reservation",
-  storageBucket: "kmutt-reservation.appspot.com",
-  messagingSenderId: "983171103458",
-  appId: "1:983171103458:web:8b79d1398703df85c1bcbb",
-  measurementId: "G-TZ0CRMVPYN"
+  apiKey: "AIzaSyAjJaOFUnPw80qHp3xClTXbGYDrasDqAno",
+  authDomain: "kmutt-reservation2.firebaseapp.com",
+  projectId: "kmutt-reservation2",
+  storageBucket: "kmutt-reservation2.appspot.com",
+  messagingSenderId: "1027361583579",
+  appId: "1:1027361583579:web:9977137f642888a3f6f7fe",
+  measurementId: "G-TR6NGZP8FT"
 };
   export default firebaseConfig;
